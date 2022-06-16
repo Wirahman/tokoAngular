@@ -1,0 +1,53 @@
+<p>pengguna works!</p>
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="tambahPengguna()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-plus'></span>Tambah Pengguna
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive-md text-center">
+            <tr>
+                <th>No</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Avatar</th>
+                <th>Actions</th>
+            </tr>
+         
+
+            <tr *ngFor="let row of pengguna | paginate : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              }; let i = index" [class.active]="i == currentIndex">
+                <td>{{row.id}}</td>
+                <td>{{row.email}}</td>
+                <td>{{row.first_name}}</td>
+                <td>{{row.last_name}}</td>
+                <td><img src={{row.avatar}} style="width:50px;"></td>
+                <td>
+                  <a (click)="updatePengguna(row.id)" class='btn btn-info m-r-5px'>
+                      <span class='glyphicon glyphicon-edit'></span>
+                  </a>&#160;&#160;
+        
+                  <a (click)="hapusPengguna(row.id)" class='btn btn-danger m-r-5px'>
+                      <span class='glyphicon glyphicon-remove'></span>
+                  </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+
+</div>

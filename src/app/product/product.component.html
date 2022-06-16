@@ -1,0 +1,61 @@
+<p>product works!</p>
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="tambahProduct()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-plus'></span>Tambah Product
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-responsive-md text-center">
+            <tr>
+                <th>No</th>
+                <th>Nama Product</th>
+                <th>Deskripsi</th>
+                <th>Kategory</th>
+                <th>Gambar</th>
+                <th>Harga</th>
+                <th>Total Product</th>
+                <th>Tanggal Buat</th>
+                <th>Tanggal Edit</th>
+                <th>Actions</th>
+            </tr>
+         
+
+            <tr *ngFor="let row of product | paginate : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              }; let i = index" [class.active]="i == currentIndex">
+                <td>{{row.id}}</td>
+                <td>{{row.productName}}</td>
+                <td>{{row.productDescription}}</td>
+                <td>{{row.productCategory}}</td>
+                <td><img src={{row.productImage}} style="width:50px;"></td>
+                <td>{{row.productPrice}}</td>
+                <td>{{row.productQty}}</td>
+                <td>{{row.createdAt}}</td>
+                <td>{{row.updatedAt}}</td>
+                <td>
+                  <a (click)="updateProduct(row.id)" class='btn btn-info m-r-5px'>
+                      <span class='glyphicon glyphicon-edit'></span>
+                  </a>&#160;&#160;
+        
+                  <a (click)="hapusProduct(row.id)" class='btn btn-danger m-r-5px'>
+                      <span class='glyphicon glyphicon-remove'></span>
+                  </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+
+</div>

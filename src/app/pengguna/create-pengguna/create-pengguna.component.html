@@ -1,0 +1,35 @@
+<div>
+    <p style="white-space: pre;">
+        {{ alertValidasi }}
+    </p>
+</div>
+<div id="backgroundimage" class="container">
+    <form [formGroup]="formPengguna" (ngSubmit) = "onCreatePengguna()">
+            
+        <div class="form-group" style="width:20%">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="pengguna.email" name="email" (ngModelChange)="periksaAlert($event)" style="width:80%;" formControlName="email">
+        </div>
+        
+        <div class="form-group" style="width:20%">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="pengguna.first_name" name="firstName" (ngModelChange)="periksaAlert($event)" style="width:80%;" formControlName="first_name">
+        </div>
+
+        <div class="form-group" style="width:20%">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="pengguna.last_name" name="lastName" (ngModelChange)="periksaAlert($event)" style="width:80%;" formControlName="last_name">
+        </div>
+
+        <div class="form-group" style="width:20%">
+            <label for="avatar">Avatar</label>
+            <input type="text" class="form-control" id="avatar" required [(ngModel)]="pengguna.avatar" name="avatar" (ngModelChange)="periksaAlert($event)" style="width:80%;" formControlName="avatar">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Login</button>&#160;&#160;
+            <button type="reset" class="btn btn-danger" (click)="cancel()">Batal</button>
+        </div>
+    </form>
+    
+</div>

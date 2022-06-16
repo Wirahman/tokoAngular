@@ -1,0 +1,53 @@
+<main cds-layout="vertical gap:lg p:lg">
+    <h1 cds-text="heading">Login</h1>
+    <cds-control-message status="error" style="width:40%;">
+      <p style="white-space: pre;">
+        {{ alertValidasi }}
+      </p>
+    </cds-control-message>
+
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
+        <cds-form-group>
+            <cds-input style="width:20%;">
+                <label>Email</label>
+                <input formControlName="email" type="email" />
+                <cds-control-message *ngIf="email.touched && email.hasError('required')" status="error">required</cds-control-message>
+                <cds-control-message *ngIf="email.touched && email.hasError('email')" status="error">invalid email</cds-control-message>      
+            </cds-input>
+
+            <cds-password style="width:20%;">
+                <label>Password</label>
+                <input formControlName="password" type="password" value="hello there" />
+                <cds-control-message *ngIf="password.touched && password.hasError('required')" status="error">required</cds-control-message>
+            </cds-password>
+            <cds-button type="submit" [disabled]="!form.valid">login</cds-button>
+        </cds-form-group>
+    </form>
+</main>
+
+
+
+
+<!-- <main cds-layout="vertical gap:lg p:lg">
+    <h1 cds-text="heading">Reactive Forms in Clarity Core and Angular</h1>
+  
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <cds-form-group>
+        <cds-input>
+          <label>Email</label>
+          <input formControlName="email" type="email" />
+          <cds-control-message *ngIf="email.touched && email.hasError('required')" status="error">required</cds-control-message>
+          <cds-control-message *ngIf="email.touched && email.hasError('email')" status="error">invalid email</cds-control-message>
+        </cds-input>
+  
+        <cds-password>
+          <label>Password</label>
+          <input formControlName="password" type="password" value="hello there" />
+          <cds-control-message *ngIf="password.touched && password.hasError('required')" status="error">required</cds-control-message>
+        </cds-password>
+  
+        <cds-button type="submit">login</cds-button>
+      </cds-form-group>
+    </form>
+  </main> -->
+  
